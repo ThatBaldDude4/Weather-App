@@ -1,13 +1,13 @@
-import { getData } from "./modules/data.js";
+import { getData, renderCard  } from "./modules/data.js";
 
 const form = document.getElementById("weather-form");
 const locationInput = document.getElementById("location-input");
-const submitBtn = document.getElementById("submit-btn")
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", async (e) => {
     e.preventDefault();
     let input = locationInput.value;
     if (!input) {return};
 
-    getData(input);
+    let data = await getData(input);
+    renderCard(data);
 });

@@ -7,7 +7,7 @@ export async function getData(location) {
         loading = true;
         let response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/?key=PBQU6E38AF4XTKZTWAKNB2R47`);
         let data = await response.json();
-        renderCard(data);
+        return parseData(data);
     } catch(err) {
         console.err(err);
     }
@@ -24,7 +24,7 @@ function buildWeatherCard(data) {
 
     description.textContent = data.description;
 
-    temp.textContent = `Tempature: ${data.currentConditions.temp}`;
+    temp.textContent = `Tempature: ${data.currentConditions.temp} f`;
 
     container.appendChild(title);
     container.appendChild(description);
@@ -40,7 +40,7 @@ function parseData(data) {
     return {address, currentConditions, description};
 }
 
-function renderCard(data) {
+export function renderCard(data) {
     let parsedData = parseData(data);
     let card = buildWeatherCard(parsedData);
 
