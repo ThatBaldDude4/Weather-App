@@ -7,7 +7,7 @@ export async function getData(location) {
         loading = true;
         let response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/?key=PBQU6E38AF4XTKZTWAKNB2R47`);
         let data = await response.json();
-        return parseData(data);
+        return data;
     } catch(err) {
         console.err(err);
     }
